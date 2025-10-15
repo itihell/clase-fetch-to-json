@@ -1,3 +1,6 @@
+html {
+  font-size: 68%;
+}
 html,
 body {
   margin: 0;
@@ -14,18 +17,28 @@ body {
 .content-cards {
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 20px;
   background-color: yellow;
   width: 40%;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.42);
+  overflow: hidden;
 }
 
 .content-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 30%;
   background-color: blue;
 }
 
+.content-img img {
+  width: 100%;
+  height: auto;
+}
+
 .content-info {
+  height: auto;
   width: 70%;
   background-color: green;
 }
