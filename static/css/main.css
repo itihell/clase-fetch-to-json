@@ -22,6 +22,7 @@ body {
   border-radius: 5px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.42);
   overflow: hidden;
+  border: 1px solid #ccc;
 }
 
 .content-img {
@@ -41,4 +42,28 @@ body {
   height: auto;
   width: 70%;
   background-color: green;
+}
+
+.margin-10 {
+  margin: 10px;
+  font-size: 1.6rem;
+}
+
+.content-text {
+  margin: 10px;
+  background-color: orange;
+  display: flex;
+  gap: 5px;
+}
+.content-text div {
+  background-color: yellow;
+}
+
+.content-text div:nth-child(1) {
+  flex: 1;
+  text-align: right;
+}
+.content-text div:nth-child(2) {
+  flex: 2;
+  text-align: left;
 }
