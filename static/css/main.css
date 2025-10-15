@@ -1,0 +1,31 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+.data-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: red;
+}
+
+.content-cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background-color: yellow;
+  width: 40%;
+}
+
+.content-img {
+  width: 30%;
+  background-color: blue;
+}
+
+.content-info {
+  width: 70%;
+  background-color: green;
+}
