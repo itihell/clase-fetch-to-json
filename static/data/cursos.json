@@ -2,11 +2,13 @@
   {
     "codigo": "IGW-402",
     "nombre": "Ingeniería Web I",
-    "creditos": 4
+    "creditos": 4,
+    "img": "m1.jpeg"
   },
   {
     "codigo": "IGW-403",
     "nombre": "Ingeniería Web II",
-    "creditos": 4
+    "creditos": 4,
+    "img": "m2.jpeg"
   }
 ]
