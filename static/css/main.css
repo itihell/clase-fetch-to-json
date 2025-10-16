@@ -1,0 +1,79 @@
+html {
+  font-size: 68%;
+}
+hr {
+  padding: 0px;
+  margin: 0px;
+  border: 1px #cfcdcd solid;
+}
+h4 {
+  margin: 0px;
+  padding: 0px;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+.data-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: red;
+}
+
+.content-cards {
+  background-color: #fcfafa;
+  display: flex;
+  justify-content: center;
+  width: 40%;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.42);
+  overflow: hidden;
+  border: 1px solid #ccc;
+}
+
+.content-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+}
+
+.content-img img {
+  width: 100%;
+  height: auto;
+}
+
+.content-info {
+  height: auto;
+  width: 70%;
+}
+
+.content-info h4 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.margin-10 {
+  margin: 10px;
+  font-size: 1.6rem;
+}
+
+.content-text {
+  margin: 10px;
+  display: flex;
+  gap: 5px;
+}
+.content-text div {
+}
+
+.content-text div:nth-child(1) {
+  flex: 1;
+  text-align: left;
+}
+.content-text div:nth-child(2) {
+  flex: 2;
+  text-align: left;
+}
