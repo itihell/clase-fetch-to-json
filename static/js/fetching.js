@@ -4,7 +4,7 @@
     rows.forEach((element) => {
       const card = `<div class="content-cards">
         <div class="content-img">
-          <img src="static/img/${element.img}" alt="${element.nombre}" />
+          <img src="/static/img/${element.img}" alt="${element.nombre}" />
         </div>
         <div class="content-info">
           <div class="margin-10">
