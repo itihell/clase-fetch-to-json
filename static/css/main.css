@@ -79,3 +79,58 @@ body {
   flex: 2;
   text-align: left;
 }
+
+/* Estilos del menus */
+
+.menus {
+  background-color: #1d293d;
+  border-bottom: 1px solid #eee;
+  line-height: 50px;
+  color: white;
+}
+
+.container-menus {
+  line-height: 40px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 1.5px;
+  padding-left: 20px;
+}
+
+.nav-list ul {
+  margin: 0;
+  padding: 0;
+}
+.nav-list ul li {
+  margin: 0;
+  padding: 0;
+}
+
+.menus-left {
+  display: flex;
+  align-items: center;
+}
+
+.menu-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 15px;
+}
+
+.menu-items li {
+  display: inline;
+}
+
+.menu-items a {
+  text-decoration: none;
+  color: #ccc;
+  line-height: 40px;
+  font-size: 1.6rem;
+  padding: 11px 5px;
+  transition: background-color 0.3s;
+}
+
+.menu-items a:hover {
+  background-color: #0f172b;
+}

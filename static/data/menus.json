@@ -10,5 +10,9 @@
   {
     "name": "Json PlaceHolder",
     "link": "/pages/holder"
+  },
+  {
+    "name": "Pokemon",
+    "link": "/pages/pokemon"
   }
 ]
