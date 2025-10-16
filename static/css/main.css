@@ -14,22 +14,43 @@ html,
 body {
   margin: 0;
   padding: 0;
+  background-color: #e7e5e4;
 }
+.main-container {
+}
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+.panel {
+}
+
+.panel {
+  padding: 10px;
+}
+
+.left {
+  width: 60%;
+}
+
+.right {
+  width: 40%;
+}
+
 .data-container {
   display: flex;
   gap: 10px;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+
   height: 100vh;
-  background-color: red;
 }
 
 .content-cards {
   background-color: #fcfafa;
   display: flex;
   justify-content: center;
-  width: 40%;
+  width: 100%;
   border-radius: 5px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.42);
   overflow: hidden;
