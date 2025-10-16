@@ -26,7 +26,6 @@
         </div>
       </div>`;
       containerItems.innerHTML += card;
-      console.log(element);
     });
   };
   async function getJson() {

@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Home",
+    "link": "/"
+  },
+  {
+    "name": "Cursos",
+    "link": "/page/cursos"
+  },
+  {
+    "name": "Json PlaceHolder",
+    "link": "/pages/holder"
+  }
+]
