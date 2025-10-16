@@ -93,6 +93,7 @@ body {
   line-height: 40px;
   border-bottom: 1px solid #ccc;
   margin-bottom: 1.5px;
+  padding-left: 20px;
 }
 
 .nav-list ul {
@@ -123,11 +124,13 @@ body {
 
 .menu-items a {
   text-decoration: none;
-
-  color: #333;
+  color: #ccc;
+  line-height: 40px;
+  font-size: 1.6rem;
+  padding: 11px 5px;
   transition: background-color 0.3s;
 }
 
 .menu-items a:hover {
-  background-color: #eee;
+  background-color: #0f172b;
 }
