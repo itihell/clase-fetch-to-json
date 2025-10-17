@@ -46,15 +46,23 @@ const showUser = async (id) => {
 // Es una funcion autoejecutable
 (async () => {
   const containerPosts = document.getElementById("list-card");
+  containerPosts.innerHTML = `<div class="container-loader">
+              <h4>Loading...</h4>
+              <div class="loader"></div>
+            </div>`;
   const getPost = async () => {
     const url = `https://jsonplaceholder.typicode.com/posts`;
     const data = await fetch(url);
     const posts = await data.json();
+
+    // Timer para mostrar el loader
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
     return posts;
   };
 
   const renderPosts = (posts) => {
-    let postCard = "";
+    let postCard = ``;
     posts.forEach((element) => {
       postCard += `<div class="content-cards">        
         <div class="content-info">
