@@ -1,8 +1,28 @@
+const postContainer = document.getElementById("container-post");
+
 const renderPostPage = async (id) => {
   const post = await showPost(id);
   const user = await showUser(post.userId);
 
-  console.log({ post, user });
+  postContainer.innerHTML = ` <div class="margin-10">
+              <div class="card-header bg-primary">
+                <div><h1>${post.title}</h1></div>
+              </div>
+              <div class="card-body">${post.body}</div>
+              <div class="card-footer">
+                <div><h4>Datos del Autor</h4></div>
+                <div class="">
+                  <div class="row gap">
+                    <div>Nombre:</div>
+                    <div>${user.name}</div>
+                  </div>
+                  <div class="row gap">
+                    <div>Email:</div>
+                    <div>${user.email}</div>
+                  </div>
+                </div>
+              </div>
+            </div>`;
 };
 
 // Funcion para obtener los datos de un post

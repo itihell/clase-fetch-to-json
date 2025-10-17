@@ -16,6 +16,43 @@ body {
   padding: 0;
   background-color: #e7e5e4;
 }
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
+/* Clases de colores de fondo */
+.bg-dark {
+  background-color: #1d293d;
+  color: white;
+}
+
+.bg-default {
+  background-color: #fcfafa;
+  color: black;
+}
+
+.bg-primary {
+  background-color: #0f172b;
+  color: white;
+}
+
+/* Estilos para manejar grilla del la
+plantilla */
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.gap {
+  gap: 10px;
+}
+
+.col {
+  flex: 1;
+}
+
 .main-container {
 }
 .container {
@@ -49,11 +86,32 @@ body {
 .content-cards {
   background-color: #fcfafa;
   display: flex;
-  justify-content: center;
   width: 100%;
   border-radius: 5px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.42);
   border: 1px solid #ccc;
+}
+
+.card {
+  background-color: #fcfafa;
+  width: 100%;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.42);
+  border: 1px solid #ccc;
+}
+
+.card-header {
+  padding: 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.card-body {
+  padding: 10px;
+}
+
+.card-footer {
+  padding: 10px;
 }
 
 .content-img {
@@ -157,4 +215,52 @@ body {
 
 .menu-items a:hover {
   background-color: #0f172b;
+}
+
+
+/* Loading */
+
+.container-loader {
+  display: flex;
+  font-size: 1.6rem;
+  color:green;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 15px;
+  aspect-ratio: 1;
+  position: relative;
+  animation: l9-0 1.5s infinite steps(2);
+}
+.loader::before,
+.loader::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #000;
+}
+.loader::before {
+  box-shadow: 26px 0;
+  transform: translateX(-26px);
+  animation: l9-1 .75s infinite linear alternate;
+}
+.loader::after {
+  transform: translateX(13px) rotate(0deg) translateX(13px);
+  animation: l9-2 .75s infinite linear alternate;
+}
+@keyframes l9-0 {
+    0% ,49.9% {transform: scale(1)}
+    50%,100%  {transform: scale(-1)}
+}
+@keyframes l9-1 {
+    100%{box-shadow: 52px 0}
+}
+@keyframes l9-2 {
+    100%{transform: translateX(13px) rotate(-180deg) translateX(13px)}
 }
