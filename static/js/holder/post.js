@@ -1,4 +1,12 @@
 const postContainer = document.getElementById("container-post");
+// postContainer.innerHTML = `<div class="container-loader">
+//               <h4>Loading...</h4>
+//               <div class="loader"></div>
+//             </div>`;
+
+const editPost = async (id) => {
+  alert(`Funcionalidad para editar el post ${id}`);
+};
 
 const renderPostPage = async (id) => {
   const post = await showPost(id);
@@ -50,14 +58,14 @@ const showUser = async (id) => {
               <h4>Loading...</h4>
               <div class="loader"></div>
             </div>`;
+
+  // Obtener listado de post de la api
+  // https://jsonplaceholder.typicode.com/posts
+  // fetch
   const getPost = async () => {
     const url = `https://jsonplaceholder.typicode.com/posts`;
     const data = await fetch(url);
     const posts = await data.json();
-
-    // Timer para mostrar el loader
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
     return posts;
   };
 
@@ -83,7 +91,10 @@ const showUser = async (id) => {
             </div>
             <div class="content-text">
               <div></div>
-              <div><button type="button" onclick="renderPostPage(${element.id})" class="btn btn-default">Ver más</button></div>
+              <div>
+              <button type="button" onclick="renderPostPage(${element.id})" class="btn btn-default">Ver más</button>
+              <button type="button" onclick="editPost(${element.id})" class="btn btn-default">Editar</button>
+              </div>
             </div>
           </div>
         </div>
@@ -93,5 +104,12 @@ const showUser = async (id) => {
   };
 
   const posts = await getPost();
+
+  // Obtener el primer elemento del arreglo de posts
+  // para mostrarlo en el contenedor principal
+  //await renderPostPage(posts[0].id);
+
+  // Pintar el primer post en el contenedor principal
+
   renderPosts(posts);
 })();

@@ -293,3 +293,25 @@ plantilla */
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 4px;
 }
+
+/* Estilos para formularios input y textarea */
+.row-control {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
