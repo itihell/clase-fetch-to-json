@@ -53,7 +53,6 @@ body {
   width: 100%;
   border-radius: 5px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.42);
-  overflow: hidden;
   border: 1px solid #ccc;
 }
 
@@ -62,6 +61,10 @@ body {
   justify-content: center;
   align-items: center;
   width: 30%;
+}
+.content-img img {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
 .content-img img {
