@@ -1,6 +1,8 @@
 const renderPostPage = async (id) => {
   const post = await showPost(id);
   const user = await showUser(post.userId);
+
+  console.log({ post, user });
 };
 
 // Funcion para obtener los datos de un post
@@ -53,7 +55,7 @@ const showUser = async (id) => {
             </div>
             <div class="content-text">
               <div></div>
-              <div><button type="button" onclick="showPost(${element.id})" class="btn btn-default">Ver más</button></div>
+              <div><button type="button" onclick="renderPostPage(${element.id})" class="btn btn-default">Ver más</button></div>
             </div>
           </div>
         </div>
