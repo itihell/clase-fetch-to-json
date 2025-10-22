@@ -21,9 +21,23 @@ const editPost = async (id) => {
   rederFormEditPost(post);
 
   const form = document.getElementById("form-post");
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    updatePost(e.target, id);
+    const tempPost = await updatePost(e.target, id);
+    containerPosts.innerHTML = `<div class="container-loader">
+              <h4>Loading...</h4>
+              <div class="loader"></div>
+            </div>`;
+
+    const posts = await getPost();
+    renderPosts(posts);
+    postContainer.innerHTML = `<div class="container-loader">
+              <h4>Loading...</h4>
+              <div class="loader"></div>
+            </div>`;
+    //TODO: Delay para simular la carga
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    renderPostPage(tempPost);
   });
 };
 
@@ -67,24 +81,29 @@ const updatePost = async (bodyForm, id) => {
   const body = formData.get("body");
   //TODO: Listener para el envio del formulario
   const url = `https://jsonplaceholder.typicode.com/posts/${id}`;
-  fetch(url, {
-    method: "PUT",
+  return fetch(url, {
+    method: "PATCH",
     body: JSON.stringify({
-      id: id,
       title: title,
       body: body,
-      userId: 1,
     }),
     headers: {
       "Content-type": "application/json; charset=UTF-8",
     },
   })
     .then((response) => response.json())
-    .then((json) => console.log(json));
+    .then((json) => {
+      return json;
+    });
 };
 
-const renderPostPage = async (id) => {
+const oneShowPost = async (id) => {
   const post = await showPost(id);
+  renderPostPage(post);
+};
+
+const renderPostPage = async (post) => {
+  //const post = await showPost(id);
   const user = await showUser(post.userId);
 
   postContainer.innerHTML = ` <div class="margin-10">
@@ -129,7 +148,7 @@ const getPost = async () => {
   const url = `https://jsonplaceholder.typicode.com/posts`;
   const data = await fetch(url);
   //delay de 2 segundos para simular la carga
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+  //await new Promise((resolve) => setTimeout(resolve, 2000));
   const posts = await data.json();
   return posts;
 };
@@ -157,7 +176,7 @@ const renderPosts = (posts) => {
             <div class="content-text">
               <div></div>
               <div>
-              <button type="button" onclick="renderPostPage(${element.id})" class="btn btn-default">Ver más</button>
+              <button type="button" onclick="oneShowPost(${element.id})" class="btn btn-default">Ver más</button>
               <button type="button" onclick="editPost(${element.id})" class="btn btn-default">Editar</button>
               </div>
             </div>
@@ -171,6 +190,6 @@ const renderPosts = (posts) => {
 // Es una funcion autoejecutable
 (async () => {
   const posts = await getPost();
-  await renderPostPage(posts[0].id);
+  await oneShowPost(posts[0].id);
   renderPosts(posts);
 })();
