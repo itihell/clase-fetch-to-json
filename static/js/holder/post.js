@@ -1,5 +1,11 @@
 const postContainer = document.getElementById("container-post");
 postContainer.innerHTML = `<div class="container-loader">
+<h4>Loading...</h4>
+<div class="loader"></div>
+</div>`;
+
+const containerPosts = document.getElementById("list-card");
+containerPosts.innerHTML = `<div class="container-loader">
               <h4>Loading...</h4>
               <div class="loader"></div>
             </div>`;
@@ -13,46 +19,91 @@ const editPost = async (id) => {
 
   //TODO: Rendizar el formulario de edicion con los datos del post
   rederFormEditPost(post);
+
+  const form = document.getElementById("form-post");
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const tempPost = await updatePost(e.target, id);
+    containerPosts.innerHTML = `<div class="container-loader">
+              <h4>Loading...</h4>
+              <div class="loader"></div>
+            </div>`;
+
+    const posts = await getPost();
+    renderPosts(posts);
+    postContainer.innerHTML = `<div class="container-loader">
+              <h4>Loading...</h4>
+              <div class="loader"></div>
+            </div>`;
+    //TODO: Delay para simular la carga
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    renderPostPage(tempPost);
+  });
 };
 
 const rederFormEditPost = (post) => {
-  postContainer.innerHTML = ` <form class="form" action="" id="form-post">
-              <div class="form-container margin-10">
-                <div class="row-control">
-                  <div><label for="title">Título:</label></div>
-                  <div>
-                    <input
-                      class="form-control"
-                      type="text"
-                      id="title"
-                      value="${post.title}"
-                      name="title"
-                    />
-                  </div>
-                </div>
-                <div class="row-control">
-                  <div><label for="body">Cuerpo:</label></div>
-                  <div>
-                    <textarea
-                      class="form-control"
-                      id="body"
-                      cols="30"
-                      rows="10"
-                      name="body"
-                    >${post.body}</textarea>
-                  </div>
-                </div>
-                <div>
-                  <button type="submit">Actualizar</button>
-                </div>
-              </div>
-            </form>`;
+  postContainer.innerHTML = ` <form class="form"  method="PUT" action="" id="form-post">
+  <div class="form-container margin-10">
+  <div class="row-control">
+  <div><label for="title">Título:</label></div>
+  <div>
+  <input
+  class="form-control"
+  type="text"
+  id="title"
+  value="${post.title}"
+  name="title"
+  />
+  </div>
+  </div>
+  <div class="row-control">
+  <div><label for="body">Cuerpo:</label></div>
+  <div>
+  <textarea
+  class="form-control"
+  id="body"
+  cols="30"
+  rows="10"
+  name="body"
+  >${post.body}</textarea>
+  </div>
+  </div>
+  <div>
+  <button type="submit">Actualizar</button>
+  </div>
+  </div>
+  </form>`;
 };
 
+const updatePost = async (bodyForm, id) => {
+  const formData = new FormData(bodyForm);
+  const title = formData.get("title");
+  const body = formData.get("body");
+  //TODO: Listener para el envio del formulario
+  const url = `https://jsonplaceholder.typicode.com/posts/${id}`;
+  return fetch(url, {
+    method: "PATCH",
+    body: JSON.stringify({
+      title: title,
+      body: body,
+    }),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  })
+    .then((response) => response.json())
+    .then((json) => {
+      return json;
+    });
+};
 
-
-const renderPostPage = async (id) => {
+const oneShowPost = async (id) => {
   const post = await showPost(id);
+  renderPostPage(post);
+};
+
+const renderPostPage = async (post) => {
+  //const post = await showPost(id);
   const user = await showUser(post.userId);
 
   postContainer.innerHTML = ` <div class="margin-10">
@@ -93,31 +144,19 @@ const showUser = async (id) => {
   return data;
 };
 
-// Funcion para pintar la lista de los post dentro del contenedor
-// Es una funcion autoejecutable
-(async () => {
-  const containerPosts = document.getElementById("list-card");
-  containerPosts.innerHTML = `<div class="container-loader">
-              <h4>Loading...</h4>
-              <div class="loader"></div>
-            </div>`;
+const getPost = async () => {
+  const url = `https://jsonplaceholder.typicode.com/posts`;
+  const data = await fetch(url);
+  //delay de 2 segundos para simular la carga
+  //await new Promise((resolve) => setTimeout(resolve, 2000));
+  const posts = await data.json();
+  return posts;
+};
 
-  // Obtener listado de post de la api
-  // https://jsonplaceholder.typicode.com/posts
-  // fetch
-  const getPost = async () => {
-    const url = `https://jsonplaceholder.typicode.com/posts`;
-    const data = await fetch(url);
-    //delay de 2 segundos para simular la carga
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    const posts = await data.json();
-    return posts;
-  };
-
-  const renderPosts = (posts) => {
-    let postCard = ``;
-    posts.forEach((element) => {
-      postCard += `<div class="content-cards">        
+const renderPosts = (posts) => {
+  let postCard = ``;
+  posts.forEach((element) => {
+    postCard += `<div class="content-cards">        
         <div class="content-info">
           <div class="margin-10">
             <h4>Dato del POST</h4>
@@ -137,24 +176,20 @@ const showUser = async (id) => {
             <div class="content-text">
               <div></div>
               <div>
-              <button type="button" onclick="renderPostPage(${element.id})" class="btn btn-default">Ver más</button>
+              <button type="button" onclick="oneShowPost(${element.id})" class="btn btn-default">Ver más</button>
               <button type="button" onclick="editPost(${element.id})" class="btn btn-default">Editar</button>
               </div>
             </div>
           </div>
         </div>
       </div>`;
-    });
-    containerPosts.innerHTML = postCard;
-  };
-
+  });
+  containerPosts.innerHTML = postCard;
+};
+// Funcion para pintar la lista de los post dentro del contenedor
+// Es una funcion autoejecutable
+(async () => {
   const posts = await getPost();
-
-  // Obtener el primer elemento del arreglo de posts
-  // para mostrarlo en el contenedor principal
-  await renderPostPage(posts[0].id);
-
-  // Pintar el primer post en el contenedor principal
-
+  await oneShowPost(posts[0].id);
   renderPosts(posts);
 })();
