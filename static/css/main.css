@@ -300,15 +300,16 @@ plantilla */
   gap: 10px;
   flex-direction: column;
   margin-bottom: 10px;
-  flex-wrap: wrap;
 }
 .form-control {
+  box-sizing: border-box;
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
 
 .form-control:focus {
   outline: none;

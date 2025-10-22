@@ -5,7 +5,48 @@ const postContainer = document.getElementById("container-post");
 //             </div>`;
 
 const editPost = async (id) => {
-  alert(`Funcionalidad para editar el post ${id}`);
+  //TODO: Ir al api a traer los datos del post especifico
+  const post = await showPost(id);
+
+  //TODO: Borrar el contenido del contenedor del post
+  postContainer.innerHTML = ``;
+
+  //TODO: Rendizar el formulario de edicion con los datos del post
+  rederFormEditPost(post);
+};
+
+const rederFormEditPost = (post) => {
+  postContainer.innerHTML = ` <form class="form" action="" id="form-post">
+              <div class="form-container margin-10">
+                <div class="row-control">
+                  <div><label for="title">Título:</label></div>
+                  <div>
+                    <input
+                      class="form-control"
+                      type="text"
+                      id="title"
+                      value="${post.title}"
+                      name="title"
+                    />
+                  </div>
+                </div>
+                <div class="row-control">
+                  <div><label for="body">Cuerpo:</label></div>
+                  <div>
+                    <textarea
+                      class="form-control"
+                      id="body"
+                      cols="30"
+                      rows="10"
+                      name="body"
+                    >${post.body}</textarea>
+                  </div>
+                </div>
+                <div>
+                  <button type="submit">Guardar</button>
+                </div>
+              </div>
+            </form>`;
 };
 
 const renderPostPage = async (id) => {
