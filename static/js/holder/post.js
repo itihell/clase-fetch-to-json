@@ -1,8 +1,8 @@
 const postContainer = document.getElementById("container-post");
-// postContainer.innerHTML = `<div class="container-loader">
-//               <h4>Loading...</h4>
-//               <div class="loader"></div>
-//             </div>`;
+postContainer.innerHTML = `<div class="container-loader">
+              <h4>Loading...</h4>
+              <div class="loader"></div>
+            </div>`;
 
 const editPost = async (id) => {
   //TODO: Ir al api a traer los datos del post especifico
@@ -43,11 +43,13 @@ const rederFormEditPost = (post) => {
                   </div>
                 </div>
                 <div>
-                  <button type="submit">Guardar</button>
+                  <button type="submit">Actualizar</button>
                 </div>
               </div>
             </form>`;
 };
+
+
 
 const renderPostPage = async (id) => {
   const post = await showPost(id);
@@ -106,6 +108,8 @@ const showUser = async (id) => {
   const getPost = async () => {
     const url = `https://jsonplaceholder.typicode.com/posts`;
     const data = await fetch(url);
+    //delay de 2 segundos para simular la carga
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     const posts = await data.json();
     return posts;
   };
@@ -148,7 +152,7 @@ const showUser = async (id) => {
 
   // Obtener el primer elemento del arreglo de posts
   // para mostrarlo en el contenedor principal
-  //await renderPostPage(posts[0].id);
+  await renderPostPage(posts[0].id);
 
   // Pintar el primer post en el contenedor principal
 
