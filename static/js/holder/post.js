@@ -1,8 +1,8 @@
 const postContainer = document.getElementById("container-post");
-postContainer.innerHTML = `<div class="container-loader">
-<h4>Loading...</h4>
-<div class="loader"></div>
-</div>`;
+// postContainer.innerHTML = `<div class="container-loader">
+// <h4>Loading...</h4>
+// <div class="loader"></div>
+// </div>`;
 
 const containerPosts = document.getElementById("list-card");
 containerPosts.innerHTML = `<div class="container-loader">
@@ -39,6 +39,14 @@ const editPost = async (id) => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
     renderPostPage(tempPost);
   });
+};
+
+//TODO: Metodo para hacer get a los comentarios de json placeholder
+const getCommmentsPost = async (postId) => {
+  const url = `https://jsonplaceholder.typicode.com/posts/${postId}/comments`;
+  return await fetch(url)
+    .then((response) => response.json())
+    .then((json) => console.log(json));
 };
 
 const rederFormEditPost = (post) => {
@@ -190,6 +198,6 @@ const renderPosts = (posts) => {
 // Es una funcion autoejecutable
 (async () => {
   const posts = await getPost();
-  await oneShowPost(posts[0].id);
+  //await oneShowPost(posts[0].id);
   renderPosts(posts);
 })();
