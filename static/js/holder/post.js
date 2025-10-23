@@ -54,7 +54,7 @@ const getCommmentsPost = async (postId) => {
 const renderCommnetsPost = (comments) => {
   let commentsCard = ``;
   comments.forEach((element) => {
-    commentsCard += `<div class="margin-10">
+    commentsCard += ` <div class="card" style="margin-top:10px;"><div class="margin-10">
               <div class="card-body">
                 <i class="fa-solid fa-comment"></i>
                 <div>${element.body}</div>
@@ -67,6 +67,7 @@ const renderCommnetsPost = (comments) => {
                     <div>${element.email}</div>
                   </div>
                 </div>
+              </div>
               </div>
             </div>`;
   });
@@ -138,7 +139,7 @@ const renderPostPage = async (post) => {
   //const post = await showPost(id);
   const user = await showUser(post.userId);
 
-  postContainer.innerHTML = ` <div class="margin-10">
+  postContainer.innerHTML = ` <div class="card"><div class="margin-10">
               <div class="card-header bg-primary">
                 <div><h1>${post.title}</h1></div>
               </div>
@@ -155,6 +156,7 @@ const renderPostPage = async (post) => {
                     <div>${user.email}</div>
                   </div>
                 </div>
+              </div>
               </div>
             </div>`;
 
