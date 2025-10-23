@@ -1,8 +1,8 @@
 const postContainer = document.getElementById("container-post");
-// postContainer.innerHTML = `<div class="container-loader">
-// <h4>Loading...</h4>
-// <div class="loader"></div>
-// </div>`;
+postContainer.innerHTML = `<div class="container-loader">
+<h4>Loading...</h4>
+<div class="loader"></div>
+</div>`;
 
 const containerPosts = document.getElementById("list-card");
 containerPosts.innerHTML = `<div class="container-loader">
@@ -46,7 +46,31 @@ const getCommmentsPost = async (postId) => {
   const url = `https://jsonplaceholder.typicode.com/posts/${postId}/comments`;
   return await fetch(url)
     .then((response) => response.json())
-    .then((json) => console.log(json));
+    .then((json) => {
+      return json;
+    });
+};
+
+const renderCommnetsPost = (comments) => {
+  let commentsCard = ``;
+  comments.forEach((element) => {
+    commentsCard += `<div class="margin-10">
+              <div class="card-body">
+                <i class="fa-solid fa-comment"></i>
+                <div>${element.body}</div>
+              </div>
+              <div class="card-footer">
+                <div><i class="fa-solid fa-user"></i></div>
+                <div class="">
+                  <div class="row gap">
+                    <div>Email:</div>
+                    <div>${element.email}</div>
+                  </div>
+                </div>
+              </div>
+            </div>`;
+  });
+  return commentsCard;
 };
 
 const rederFormEditPost = (post) => {
@@ -133,9 +157,14 @@ const renderPostPage = async (post) => {
                 </div>
               </div>
             </div>`;
+
+  //TODO: Traer los comentarios del post
+  const comments = await getCommmentsPost(post.id);
+  console.log({ comments });
+
+  postContainer.innerHTML += renderCommnetsPost(comments);
 };
 
-// Funcion para obtener los datos de un post
 // especifico
 const showPost = async (id) => {
   const url = `https://jsonplaceholder.typicode.com/posts/${id}`;
@@ -198,6 +227,6 @@ const renderPosts = (posts) => {
 // Es una funcion autoejecutable
 (async () => {
   const posts = await getPost();
-  //await oneShowPost(posts[0].id);
+  await oneShowPost(posts[0].id);
   renderPosts(posts);
 })();
